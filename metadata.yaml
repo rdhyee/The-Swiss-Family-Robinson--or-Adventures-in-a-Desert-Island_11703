@@ -1,0 +1,52 @@
+_repo: The-Swiss-Family-Robinson-or-Adventures-in-a-Desert-Island_11703
+_version: 0.0.1
+creator:
+  author:
+    agent_name: Wyss, Johann David
+    alias: Wyss, J. D. (Johann David)
+    birthdate: 1743
+    deathdate: 1818
+    gutenberg_agent_id: '1327'
+    url: http://www.gutenberg.org/2009/agents/1327
+    wikipedia:
+    - http://en.wikipedia.org/wiki/Johann_David_Wyss
+    - http://fr.wikipedia.org/wiki/Johann_David_Wyss
+description: "The Swiss Family Robinson (German: Der Schweizerische Robinson) is a\
+  \ novel by Johann David Wyss, first published in 1812, about a Swiss family shipwrecked\
+  \ in the East Indies en route to Port Jackson, Australia.\n From Wikipedia (CC BY-SA)."
+gutenberg_issued: '2004-03-01'
+gutenberg_type: Text
+identifiers:
+  gutenberg: '11703'
+  wikidata: Q665715
+language: en
+publisher: Project Gutenberg
+rights: Public domain in the USA.
+rights_url: http://creativecommons.org/about/pdm
+subjects:
+- !lcsh 'Islands -- Fiction'
+- !lcsh 'Survival -- Fiction'
+- !lcsh 'Family life -- Fiction'
+- !lcc 'PZ'
+- !lcc 'PT'
+- GITenberg
+title: The Swiss Family Robinson; or Adventures in a Desert Island
+url: http://www.gutenberg.org/ebooks/11703
+wikipedia:
+- https://fr.wikipedia.org/wiki/Le_Robinson_suisse
+- https://ar.wikipedia.org/wiki/%D8%B9%D8%A7%D8%A6%D9%84%D8%A9_%D8%B1%D9%88%D8%A8%D9%86%D8%B3%D9%88%D9%86_%D8%A7%D9%84%D8%B3%D9%88%D9%8A%D8%B3%D8%B1%D9%8A%D8%A9
+- https://nl.wikipedia.org/wiki/De_Zwitserse_Familie_Robinson
+- https://ja.wikipedia.org/wiki/%E3%82%B9%E3%82%A4%E3%82%B9%E3%81%AE%E3%83%AD%E3%83%93%E3%83%B3%E3%82%BD%E3%83%B3
+- https://cs.wikipedia.org/wiki/%C5%A0v%C3%BDcarsk%C3%BD_Robinson
+- https://fa.wikipedia.org/wiki/%D8%AE%D8%A7%D9%86%D9%88%D8%A7%D8%AF%D9%87_%D8%B3%D9%88%D8%A6%DB%8C%D8%B3%DB%8C_%D8%B1%D8%A7%D8%A8%DB%8C%D9%86%D8%B3%D9%88%D9%86
+- https://de.wikipedia.org/wiki/Der_Schweizerische_Robinson
+- https://es.wikipedia.org/wiki/El_Robinson_suizo
+- https://simple.wikipedia.org/wiki/Swiss_Family_Robinson_(book)
+- https://en.wikisource.org/wiki/The_Swiss_Family_Robinson
+- https://en.wikipedia.org/wiki/The_Swiss_Family_Robinson
+- https://sv.wikipedia.org/wiki/Den_schweiziske_Robinson
+- https://no.wikipedia.org/wiki/Den_sveitsiske_familien_Robinson
+- https://zh.wikipedia.org/wiki/%E6%B5%B7%E8%A7%92%E4%B8%80%E6%A8%82%E5%9C%92
+- https://sh.wikipedia.org/wiki/%C5%A0vicarska_porodica_Robinson
+- https://tr.wikipedia.org/wiki/%C4%B0svi%C3%A7reli_Robinsonlar
+- https://fr.wikisource.org/wiki/Le_Robinson_suisse
