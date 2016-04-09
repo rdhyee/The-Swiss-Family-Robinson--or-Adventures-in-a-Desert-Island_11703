@@ -1,0 +1,59 @@
+sudo: required
+dist: trusty
+language: ruby
+
+before_install:
+- gem install asciidoctor -v 1.5.2 
+- gem install tilt
+- sudo pip install git+https://github.com/rdhyee/ebooklib.git
+script:
+- VERSION=`ruby -e "require 'yaml'; meta = YAML.load_file('metadata.yaml'); puts meta['_version'];"`
+- git clone https://github.com/gitenberg-dev/asciidoctor-htmlbook.git
+
+- sudo pip install -r asciidoctor-htmlbook/gitberg-machine/requirements.txt
+- asciidoctor -a toc,idprefix=xx_,version=$VERSION -b xhtml5 -T ./asciidoctor-htmlbook/htmlbook-autogen/
+  -d book book.asciidoc -o book.html
+- git clone https://github.com/gitenberg-dev/HTMLBook
+
+# make book.html available to jinja2 environment by putting it into templates
+- cp book.html asciidoctor-htmlbook/gitberg-machine/templates/
+
+- /usr/bin/python asciidoctor-htmlbook/gitberg-machine/machine.py -o . -m metadata.yaml book.html
+- xsltproc -stringparam external.assets.list " " ./HTMLBook/htmlbook-xsl/epub.xsl book.html
+- cp ./HTMLBook/stylesheets/epub/epub.css OEBPS
+- if [ -e cover.jpg ]; then cp cover.jpg OEBPS/cover.jpg; fi
+# look for first images directory and one found, copy over to ./OEBPS
+- find . -name images -type d | head -n 1 | xargs -I {} mv {} ./OEBPS/
+- zip -rX book.epub mimetype
+- zip -rX book.epub OEBPS/ META-INF/
+- if test -d "OEBPS/images/"; then zip -rX book.epub OEBPS/images/ ;fi
+- mv book.epub The-Swiss-Family-Robinson-or-Adventures-in-a-Desert-Island.epub
+- ebook-convert The-Swiss-Family-Robinson-or-Adventures-in-a-Desert-Island.epub The-Swiss-Family-Robinson-or-Adventures-in-a-Desert-Island.mobi
+- xvfb-run ebook-convert The-Swiss-Family-Robinson-or-Adventures-in-a-Desert-Island.epub The-Swiss-Family-Robinson-or-Adventures-in-a-Desert-Island.pdf
+branches:
+  only:
+  - master
+notifications:
+  webhooks:
+    urls:
+      - https://unglue.it/api/travisci/webhook
+    on_success: always
+    on_failure: never
+    on_start: never
+deploy:
+  skip_cleanup: true
+  provider: releases
+  api_key:
+    secure: Cg5/dOJUjmp1sJLIRWCSRqGasj++NyUbKXMTwORSbAuF30jpYyA0FnnQ0svvjeYjX4UwUq70h3R7WZbhYn41l9bW83MpbhscFawzPKof8GPNfpKEfZkCPK2kl8itHkx+XJkO2PT7tVFMUkc/t5dOwkay/ovTBY4/7+oYBYxyW+GkVK9LruvrCYwAZAu6LkSLVIHkOz77PFRzd9SdKA0qNZnTHpJEyiaDG5jHLm6kcicQrVDM4XTAjFRVUWGGqk5TRcvHHNqLVbPWS/+QS0BylX1SSL7dqh+okzLiZzRgf0EULqiVKTBjdePsDGo4AtpyAmzsh6XK/et14sx4yKxbbTGFOV/w9ZvL+KOXagRActA4PGj93ORcHPZsAoQl5mA5Uax/WuqPoB9QA7mSGYYSBITIQ9n9VzwbWP1HhRM5e/M/Dinm6DVX4n24/c+7MklK21/QRz+Xnn315Gkkr9Uu2w1oyE/taSzfrexH0AmvaqqRJKBeVGB3pQfIOoCWo5O6HWJPQwgW2VxpAoCCJFQIL9Jjs8FuQYafp0oY4FokhoGWeOG/dVAyauOMWj5ZwLp/eV+p4PSQtGGIz9Xr5k5rDR4o2n+X4p65tiFf24qa5Mk7X24FwQHgIS8O3Qvkl2ByMaGsSCl4Aqu8/URc4kGVwTJMC6aYStiVH5T6tep2rsM=
+  file:
+    - The-Swiss-Family-Robinson-or-Adventures-in-a-Desert-Island.epub
+    - The-Swiss-Family-Robinson-or-Adventures-in-a-Desert-Island.mobi
+    - The-Swiss-Family-Robinson-or-Adventures-in-a-Desert-Island.pdf
+  "on":
+    repo: GITenberg/The-Swiss-Family-Robinson-or-Adventures-in-a-Desert-Island_11703
+addons:
+  apt:
+    packages:
+    - xsltproc
+    - xvfb
+    - calibre
