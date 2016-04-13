@@ -50,7 +50,7 @@ deploy:
     - The-Swiss-Family-Robinson-or-Adventures-in-a-Desert-Island.mobi
     - The-Swiss-Family-Robinson-or-Adventures-in-a-Desert-Island.pdf
   "on":
-    repo: GITenberg/The-Swiss-Family-Robinson-or-Adventures-in-a-Desert-Island_11703
+    repo: GITenberg/The-Swiss-Family-Robinson--or-Adventures-in-a-Desert-Island_11703
 addons:
   apt:
     packages:
